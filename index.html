@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <input id="msg" />
+    <button onclick="ask()">Send</button>
+    <pre id="output"></pre>
+
+    <script>
+      async function ask() {
+        const userInput = document.getElementById("msg").value;
+        const res = await fetch("https://YOUR-FLOWISE.fly.dev/api/v1/prediction/YOUR-FLOW-ID", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: userInput })
+        });
+        const data = await res.json();
+        document.getElementById("output").innerText = data.text;
+      }
+    </script>
+  </body>
+</html>
